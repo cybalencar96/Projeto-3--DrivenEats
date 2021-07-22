@@ -98,7 +98,7 @@ function openConfirmWindow() {
     orderItens[0].children[1].innerHTML = myPlate.plateCost.toFixed(2);
 
 
-    orderItens[1].children[0].innerHTML = myDrink.DrinkName;
+    orderItens[1].children[0].innerHTML = myDrink.drinkName;
     orderItens[1].children[1].innerHTML = myDrink.drinkCost.toFixed(2);
 
     orderItens[2].children[0].innerHTML = myDessert.dessertName;
@@ -113,10 +113,13 @@ function openConfirmWindow() {
 }
 
 function confirmOrder() {
+    const customerName = prompt("Digite seu nome");
+    const customerAddress = prompt("Digite o endereço de entrega. (Rua Exemplo, nº 00, complement, bairro)");
+    
     const finalCost = myPlate.plateCost + myDrink.drinkCost + myDessert.dessertCost;
-    const strMessage = "Olá, gostaria de fazer o pedido \n - Prato: " + myPlate.plateName + "\n - Bebida: " + myDrink.drinkName + "\n - Sobremesa: " + myDessert.dessertName + "\n Total: R$ " + finalCost.toFixed(2);
-    const URIencode = encodeURIComponent(strMessage);
-    const wppStr = "https://wa.me/5521967670121?text=" + URIencode;
+    const strMessage = "Olá, gostaria de fazer o pedido \n - Prato: " + myPlate.plateName + "\n - Bebida: " + myDrink.drinkName + "\n - Sobremesa: " + myDessert.dessertName + "\n Total: R$ " + finalCost.toFixed(2) + "\n \n Nome: " + customerName + "\n Endereço: " + customerAddress;
+    const URIencodeMessage = encodeURIComponent(strMessage);
+    const wppStr = "https://wa.me/5521967670121?text=" + URIencodeMessage;
 
     window.open(wppStr);
 
