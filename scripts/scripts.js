@@ -41,10 +41,18 @@ function selectItem(itemId,itemName, itemCost) {
     // If item selected is a plate
     if (itemId[0] === "0") {
 
-        // unmark last plate selected || -1 means that no drink was selected
+        if (Number(itemId[1]) === lastPlateSelected) {
+            plates[lastPlateSelected].classList.remove("choosen");
+            plates[lastPlateSelected].children[4].style.display = "none";
+            lastPlateSelected = -1;
+            myPlate.plateSelected = false;
+            enableSendButton();
+            return;
+        }
+        // unmark last plate selected -> -1 means that no drink was selected
         if (lastPlateSelected !== -1 ) {
             plates[lastPlateSelected].classList.remove("choosen");
-            plates[lastPlateSelected].children[4].style.display = "none"
+            plates[lastPlateSelected].children[4].style.display = "none";
         }
 
         // mark new plate
@@ -63,6 +71,15 @@ function selectItem(itemId,itemName, itemCost) {
     
     // If item selected is a drink
     if (itemId[0] === "1") {
+
+        if (Number(itemId[1]) === lastDrinkSelected) {
+            drinks[lastDrinkSelected].classList.remove("choosen");
+            drinks[lastDrinkSelected].children[4].style.display = "none";
+            lastDrinkSelected = -1;
+            myDrink.drinkSelected = false;
+            enableSendButton();
+            return;
+        }
 
         // unmark last drink selected || -1 means that no drink was selected
         if (lastDrinkSelected !== -1 ) {
@@ -86,6 +103,15 @@ function selectItem(itemId,itemName, itemCost) {
     
     // If item selected is a dessert
     if (itemId[0] === "2") {
+
+        if (Number(itemId[1]) === lastDessertSelected) {
+            desserts[lastDessertSelected].classList.remove("choosen");
+            desserts[lastDessertSelected].children[4].style.display = "none";
+            lastDessertSelected = -1;
+            myDessert.dessertSelected = false;
+            enableSendButton();
+            return;
+        }
 
         // unmark last item selected || -1 means that no drink was selected
         if (lastDessertSelected !== -1 ) {
@@ -111,14 +137,18 @@ function selectItem(itemId,itemName, itemCost) {
 }
 
 function enableSendButton() {
+    const sendButton = document.getElementById("sendButton");
 
     if (myPlate.plateSelected && myDrink.drinkSelected && myDessert.dessertSelected) {
-        const sendButton = document.getElementById("sendButton");
-    
         sendButton.style.backgroundColor = "#32B72F";
         sendButton.innerHTML = "Fechar pedido"
         
         sendButton.setAttribute("onclick", "openConfirmWindow()")
+    } else {
+        sendButton.style.backgroundColor = "#CBCBCB";
+        sendButton.innerHTML = "Selecione os 3 itens para fechar o pedido";
+
+        sendButton.removeAttribute("onclick");
     }
 
 }
@@ -138,7 +168,7 @@ function openConfirmWindow() {
     orderItens[2].children[0].innerHTML = myDessert.dessertName;
     orderItens[2].children[1].innerHTML = myDessert.dessertCost.toFixed(2);
 
-    // Calculating and writing total
+    // Calculating and writing total cost
     const finalCost = myPlate.plateCost + myDrink.drinkCost + myDessert.dessertCost;
     orderItens[3].children[1].innerHTML = finalCost.toFixed(2);
 
