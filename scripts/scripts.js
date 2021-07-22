@@ -81,21 +81,50 @@ function selectDessert(num,dessertName,dessertCost) {
 function enableSendButton() {
 
     if (plateSelected && drinkSelected && dessertSelected) {
-        const sendButton = document.getElementsByTagName("button");
+        const sendButton = document.getElementById("sendButton");
     
-        sendButton[0].style.backgroundColor = "#32B72F";
-        sendButton[0].innerHTML = "Fechar pedido"
+        sendButton.style.backgroundColor = "#32B72F";
+        sendButton.innerHTML = "Fechar pedido"
         
-        sendButton[0].setAttribute("onclick", "sendOrder()")
+        sendButton.setAttribute("onclick", "openConfirmWindow()")
     }
 
 }
 
-function sendOrder() {
+function openConfirmWindow() {
+    const orderItens = document.getElementsByClassName("confirm-order-item");
+
+    orderItens[0].children[0].innerHTML = myPlate.plateName;
+    orderItens[0].children[1].innerHTML = myPlate.plateCost.toFixed(2);
+
+
+    orderItens[1].children[0].innerHTML = myDrink.DrinkName;
+    orderItens[1].children[1].innerHTML = myDrink.drinkCost.toFixed(2);
+
+    orderItens[2].children[0].innerHTML = myDessert.dessertName;
+    orderItens[2].children[1].innerHTML = myDessert.dessertCost.toFixed(2);
+
     const finalCost = myPlate.plateCost + myDrink.drinkCost + myDessert.dessertCost;
-    const strMessage = "Olá, gostaria de fazer o pedido \n - Prato: " + myPlate.plateName + "\n - Bebida: " + myDrink.drinkName + "\n - Sobremesa: " + myDessert.dessertName + "\n Total: R$ " + finalCost.toFixed(2);    console.log(strMessage);
+
+    orderItens[3].children[1].innerHTML = finalCost.toFixed(2);
+
+    const confirmWindow = document.getElementById("confirmWindow");
+    confirmWindow.style.display = "flex";
+}
+
+function confirmOrder() {
+    const finalCost = myPlate.plateCost + myDrink.drinkCost + myDessert.dessertCost;
+    const strMessage = "Olá, gostaria de fazer o pedido \n - Prato: " + myPlate.plateName + "\n - Bebida: " + myDrink.drinkName + "\n - Sobremesa: " + myDessert.dessertName + "\n Total: R$ " + finalCost.toFixed(2);
     const URIencode = encodeURIComponent(strMessage);
     const wppStr = "https://wa.me/5521967670121?text=" + URIencode;
 
     window.open(wppStr);
+
+    const confirmWindow = document.getElementById("confirmWindow");
+    confirmWindow.style.display = "none";
+}
+
+function cancelOrder() {
+    const confirmWindow = document.getElementById("confirmWindow");
+    confirmWindow.style.display = "none";
 }

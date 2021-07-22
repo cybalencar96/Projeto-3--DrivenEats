@@ -161,3 +161,99 @@ main > div:last-child {
     padding: 0 30px;
 }
 
+
+
+/* --- BEGGINING CONFIRM ORDER --- */
+.confirm-order {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.9);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+    
+}
+
+.confirm-order > div {
+    width: 90%;
+    height: 360px;
+    background-color: #50D074;
+    border-radius: 9px;  
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Titulo da caixa de confirmacao */
+.confirm-order > div > strong {
+    font-weight: 700;
+    color: white;
+    font-size: 22px;
+    margin: 20px 0;
+
+    display: block;
+}
+
+.confirm-order-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-order-item p {
+    font-size: 22px;
+    letter-spacing: 1.8%;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.confirm-order-item strong{
+    display: block;
+
+    color: white;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1.8%;
+    margin-bottom: 20px;
+}
+
+.confirm-order .sendOrder {
+    display: block;
+    margin: 0 auto 20px auto;
+
+    background-color: white;
+    color: #50D074;
+    
+    width: 100%;
+    height: 52px;
+
+    border-radius: 100px;
+    border: none;
+
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+
+
+}
+
+.confirm-order .cancel {
+    display: block;
+    margin: 0 auto;
+
+    color: white;
+    background-color: #50D074;
+    border: none;
+    width: 50%;
+
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+

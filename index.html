@@ -126,10 +126,33 @@
     </main>
 
     <nav class="bottom-bar">
-        <button>Selecione os 3 itens para fechar o pedido</button>
+        <button id="sendButton">Selecione os 3 itens para fechar o pedido</button>
     </nav>
 
+    <div class="confirm-order" id="confirmWindow">
+        <div>
+            <strong>Confirme seu pedido</strong>
+            <div class="confirm-order-item">
+                <p>Frango Yin Yang</p>
+                <p>14.90</p>
+            </div>
+            <div class="confirm-order-item">
+                <p>Frango Yin Yang</p>
+                <p>14.90</p>
+            </div>
+            <div class="confirm-order-item">
+                <p>Frango Yin Yang</p>
+                <p>14.90</p>
+            </div>
+            <div class="confirm-order-item">
+                <strong>TOTAL</strong>
+                <strong>R$ 27,70</strong>
+            </div>
+            <button class="sendOrder" onclick="confirmOrder()">Tudo certo, pode pedir!</button>
+            <button class="cancel" onclick="cancelOrder()">Cancelar</button>
 
+        </div>
+    </div>  
     <script src="scripts/scripts.js"></script>
 </body>
 </html>
