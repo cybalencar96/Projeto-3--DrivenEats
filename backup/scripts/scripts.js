@@ -41,12 +41,19 @@ function selectItem(itemId,itemName, itemCost) {
     // If item selected is a plate
     if (itemId[0] === "0") {
 
+        // if to uncheck if new selected is the same as the last one
         if (Number(itemId[1]) === lastPlateSelected) {
             plates[lastPlateSelected].classList.remove("choosen");
             plates[lastPlateSelected].children[4].style.display = "none";
+
+            // set that no one is selected
             lastPlateSelected = -1;
             myPlate.plateSelected = false;
+
+            // check if the three itens are selected
             enableSendButton();
+
+            // end selectItem function
             return;
         }
         // unmark last plate selected -> -1 means that no drink was selected
@@ -72,12 +79,19 @@ function selectItem(itemId,itemName, itemCost) {
     // If item selected is a drink
     if (itemId[0] === "1") {
 
+        // uncheck if new selected item is the same as the last one
         if (Number(itemId[1]) === lastDrinkSelected) {
             drinks[lastDrinkSelected].classList.remove("choosen");
             drinks[lastDrinkSelected].children[4].style.display = "none";
+
+            // set that no one is selected
             lastDrinkSelected = -1;
             myDrink.drinkSelected = false;
+
+            // check if the three itens are selected
             enableSendButton();
+
+            // end selectItem function
             return;
         }
 
@@ -104,12 +118,19 @@ function selectItem(itemId,itemName, itemCost) {
     // If item selected is a dessert
     if (itemId[0] === "2") {
 
+        // uncheck if new selected item is the same as the last one
         if (Number(itemId[1]) === lastDessertSelected) {
             desserts[lastDessertSelected].classList.remove("choosen");
             desserts[lastDessertSelected].children[4].style.display = "none";
+
+            // set that no one is selected
             lastDessertSelected = -1;
             myDessert.dessertSelected = false;
+
+            // check if the three itens are selected
             enableSendButton();
+
+            // end selectItem function
             return;
         }
 
@@ -153,8 +174,6 @@ function enableSendButton() {
 
 }
 
-
-
 function openConfirmWindow() {
     const orderItens = document.getElementsByClassName("confirm-order-item");
 
@@ -174,13 +193,9 @@ function openConfirmWindow() {
     const finalCost = myPlate.plateCost + myDrink.drinkCost + myDessert.dessertCost;
     orderItens[3].children[1].innerHTML = finalCost.toFixed(2);
 
-    // Show confirm window
+    // Show confirm window (changing display none to flex)
     const confirmWindow = document.getElementById("confirmWindow");
-        confirmWindow.classList.remove('hidden');
-        setTimeout(() => {
-            confirmWindow.classList.remove('visuallyHidden');
-        },20);
-
+    confirmWindow.style.display = "flex";
 }
 
 function confirmOrder() {
@@ -202,20 +217,11 @@ function confirmOrder() {
 
     // After confirm, hide confirmWindow
     const confirmWindow = document.getElementById("confirmWindow");
-    confirmWindow.classList.add("hidden");
-    confirmWindow.classList.add('visuallyHidden');
-
+    confirmWindow.style.display = "none";
 }
 
 
 function cancelOrder() {
     const confirmWindow = document.getElementById("confirmWindow");
-    confirmWindow.classList.add('visuallyHidden');
-    confirmWindow.addEventListener('transitionend', () => {
-        confirmWindow.classList.add('hidden');
-    }, {
-        once: true
-    });
-
-
+    confirmWindow.style.display = "none";
 }

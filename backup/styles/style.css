@@ -9,12 +9,6 @@ body {
     background-color: #EEEEEE;
 }
 
-/* removing horizontal scroll bar */
-*::-webkit-scrollbar {
-    height: 0;
-}
-
-
 .font-righteous {
     font-family: 'Righteous', cursive;
 }
@@ -181,13 +175,11 @@ main > div:last-child {
     left: 0;
     background-color: rgba(255,255,255,0.9);
 
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 
 
-    transition: all 0.5s linear;
-    opacity: 1;
     z-index: 2;
     
 }
@@ -234,7 +226,7 @@ main > div:last-child {
     margin-bottom: 20px;
 }
 
-.confirm-order .sendOrder {
+.confirm-order .send-order {
     display: block;
     margin: 0 auto 20px auto;
 
@@ -268,25 +260,4 @@ main > div:last-child {
 
 }
 
-.hidden {
-    display: none;
-}
 
-.visuallyHidden {
-    opacity: 0;
-}
-
-
-@keyframes showWindowAnimation{
-
-    from {
-        opacity: 0;
-        transform: rotateX(-10deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: rotateX(0);
-    }
-
-}
