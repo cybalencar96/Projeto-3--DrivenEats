@@ -1,29 +1,27 @@
-// Creating global objects
+// Creating global plate object
 function plate (plateSelected,plateName,plateCost) {
     this.plateName = plateName;
     this.plateCost = plateCost;
     this.plateSelected = plateSelected;
 }
-
 const myPlate = new plate;
 
+// Creating global drink object
 function drink (drinkSelected,drinkName,drinkCost) {
     this.drinkName = drinkName;
     this.drinkCost = drinkCost;
     this.drinkSelected = drinkSelected;
 
 }
-
 const myDrink = new drink;
 
+// Creating global dessert object
 function dessert (dessertSelected,dessertName,dessertCost) {
     this.dessertName = dessertName;
     this.dessertCost = dessertCost;
     this.plateSelected = dessertSelected;
 }
-
 const myDessert = new dessert;
-// ----------------------------------------
 
 function selectItem(selectedItem,itemType) {
 
@@ -58,13 +56,12 @@ function selectItem(selectedItem,itemType) {
     selectedItem.classList.add("choosen");
     selectedItem.children[4].style.display = "initial";
 
-    // Save item name and cost, workink on cost string
+    // Save item name and cost, workink on cost string to become a number
     const itemName = selectedItem.children[1].innerHTML;
     let itemCost = selectedItem.children[3].innerHTML;
-    itemCost = itemCost.replace("R$ " , "");
-    itemCost = Number(itemCost.replace("," , "."));
+    itemCost = Number(itemCost.replace("R$ ","").replace(",","."));
 
-
+    // Saving new item infos in respective objects
     if (itemType === 'plates') {
         myPlate.plateName = itemName;
         myPlate.plateCost = itemCost;
@@ -84,6 +81,7 @@ function selectItem(selectedItem,itemType) {
 }
 
 
+// function called to verify if all 3 types of food are selected. If so, enable send button
 function enableSendButton() {
     const sendButton = document.getElementById("sendButton");
 
